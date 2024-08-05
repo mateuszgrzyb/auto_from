@@ -1,0 +1,29 @@
+error: duplicate identifier
+  --> tests/compile_fail/_04_duplicate_auto_from_arg_2.rs:35:13
+   |
+35 | #[auto_from(Model1a, Model2a, Model1a, Model2a)]
+   |             ^^^^^^^
+
+error: duplicate identifier
+  --> tests/compile_fail/_04_duplicate_auto_from_arg_2.rs:35:22
+   |
+35 | #[auto_from(Model1a, Model2a, Model1a, Model2a)]
+   |                      ^^^^^^^
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_04_duplicate_auto_from_arg_2.rs:71:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+71 |         let model3a: Model3a = model1a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_04_duplicate_auto_from_arg_2.rs:89:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+89 |         let model3a: Model3a = model2a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`

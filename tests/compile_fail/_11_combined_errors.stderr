@@ -1,0 +1,71 @@
+error: duplicate identifier
+  --> tests/compile_fail/_11_combined_errors.rs:35:13
+   |
+35 | #[auto_from(Model1a, Model2a, Model1a)]
+   |             ^^^^^^^
+
+error: Duplicate field `default_value`
+  --> tests/compile_fail/_11_combined_errors.rs:39:41
+   |
+39 |     #[auto_from_attr(default_value = 0, default_value = 0)]
+   |                                         ^^^^^^^^^^^^^
+
+error: the same `from` struct may may not be used more than once for a given field
+  --> tests/compile_fail/_11_combined_errors.rs:44:7
+   |
+44 |     #[auto_from_attr(from_field = "nom")]
+   |       ^^^^^^^^^^^^^^
+
+error: `from_struct` value must be one of ["Model1a", "Model2a", "Model1a"]
+  --> tests/compile_fail/_11_combined_errors.rs:50:22
+   |
+50 |     #[auto_from_attr(from_struct = "Model22b", default_value = Default::default())]
+   |                      ^^^^^^^^^^^
+
+error: exactly one of `default_value` or `from_field` must be specified for an `auto_from_attr` attribute
+  --> tests/compile_fail/_11_combined_errors.rs:54:22
+   |
+54 |     #[auto_from_attr(default_value = Default::default(), from_field = "metadata")]
+   |                      ^^^^^^^^^^^^^
+
+error: exactly one of `default_value` or `from_field` must be specified for an `auto_from_attr` attribute
+  --> tests/compile_fail/_11_combined_errors.rs:54:58
+   |
+54 |     #[auto_from_attr(default_value = Default::default(), from_field = "metadata")]
+   |                                                          ^^^^^^^^^^
+
+error: exactly one of `default_value` or `from_field` must be specified for an `auto_from_attr` attribute
+  --> tests/compile_fail/_11_combined_errors.rs:57:7
+   |
+57 |     #[auto_from_attr(from_struct = "Model2a")]
+   |       ^^^^^^^^^^^^^^
+
+error: Duplicate field `from_struct`
+  --> tests/compile_fail/_11_combined_errors.rs:62:47
+   |
+62 |     #[auto_from_attr(from_struct = "Model2a", from_struct = "Model2a", default_value = Default::default())]
+   |                                               ^^^^^^^^^^^
+
+error: the same `from` struct may may not be used more than once for a given field
+  --> tests/compile_fail/_11_combined_errors.rs:62:7
+   |
+62 |     #[auto_from_attr(from_struct = "Model2a", from_struct = "Model2a", default_value = Default::default())]
+   |       ^^^^^^^^^^^^^^
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_11_combined_errors.rs:82:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+82 |         let model3a: Model3a = model1a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`
+
+error[E0412]: cannot find type `Model3a` in this scope
+   --> tests/compile_fail/_11_combined_errors.rs:100:22
+    |
+15  | struct Model1a {
+    | -------------- similarly named struct `Model1a` defined here
+...
+100 |         let model3a: Model3a = model2a.clone().into();
+    |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`

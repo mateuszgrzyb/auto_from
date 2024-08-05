@@ -1,0 +1,23 @@
+error: the same `from` struct may may not be used more than once for a given field
+  --> tests/compile_fail/_08_repeated_default_from_struct.rs:38:7
+   |
+38 |     #[auto_from_attr(default_value = 0)]
+   |       ^^^^^^^^^^^^^^
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_08_repeated_default_from_struct.rs:73:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+73 |         let model3a: Model3a = model1a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_08_repeated_default_from_struct.rs:91:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+91 |         let model3a: Model3a = model2a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`

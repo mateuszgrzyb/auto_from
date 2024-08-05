@@ -1,0 +1,23 @@
+error: `from_struct` value must be one of ["Model1a", "Model2a"]
+  --> tests/compile_fail/_10_from_struct_not_auto_from_arg.rs:45:22
+   |
+45 |     #[auto_from_attr(from_struct = "Model22b", default_value = Default::default())]
+   |                      ^^^^^^^^^^^
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_10_from_struct_not_auto_from_arg.rs:72:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+72 |         let model3a: Model3a = model1a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_10_from_struct_not_auto_from_arg.rs:90:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+90 |         let model3a: Model3a = model2a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`

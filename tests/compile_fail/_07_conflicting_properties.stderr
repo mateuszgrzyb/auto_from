@@ -1,0 +1,29 @@
+error: exactly one of `default_value` or `from_field` must be specified for an `auto_from_attr` attribute
+  --> tests/compile_fail/_07_conflicting_properties.rs:49:43
+   |
+49 |     #[auto_from_attr(from_field = "meta", default_value = Default::default(), from_struct = "Model2a")]
+   |                                           ^^^^^^^^^^^^^
+
+error: exactly one of `default_value` or `from_field` must be specified for an `auto_from_attr` attribute
+  --> tests/compile_fail/_07_conflicting_properties.rs:49:22
+   |
+49 |     #[auto_from_attr(from_field = "meta", default_value = Default::default(), from_struct = "Model2a")]
+   |                      ^^^^^^^^^^
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_07_conflicting_properties.rs:71:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+71 |         let model3a: Model3a = model1a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_07_conflicting_properties.rs:89:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+89 |         let model3a: Model3a = model2a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`

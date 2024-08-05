@@ -1,0 +1,32 @@
+error: duplicate identifier
+  --> tests/compile_fail/_03_duplicate_auto_from_arg.rs:24:13
+   |
+24 | #[auto_from(Model1, Model1)]
+   |             ^^^^^^
+
+error[E0412]: cannot find type `Model2a` in this scope
+  --> tests/compile_fail/_03_duplicate_auto_from_arg.rs:54:8
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+54 |     m: Model2a,
+   |        ^^^^^^^ help: a struct with a similar name exists: `Model1a`
+
+error[E0412]: cannot find type `Model2a` in this scope
+  --> tests/compile_fail/_03_duplicate_auto_from_arg.rs:35:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+35 | #[auto_from(Model1a, Model2a)]
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`
+
+error[E0422]: cannot find struct, variant or union type `Model2a` in this scope
+  --> tests/compile_fail/_03_duplicate_auto_from_arg.rs:82:23
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+82 |         let model2a = Model2a {
+   |                       ^^^^^^^ help: a struct with a similar name exists: `Model1a`

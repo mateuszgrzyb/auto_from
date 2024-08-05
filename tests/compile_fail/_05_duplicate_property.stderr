@@ -1,0 +1,23 @@
+error: Duplicate field `default_value`
+  --> tests/compile_fail/_05_duplicate_property.rs:38:41
+   |
+38 |     #[auto_from_attr(default_value = 0, default_value = 0)]
+   |                                         ^^^^^^^^^^^^^
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_05_duplicate_property.rs:71:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+71 |         let model3a: Model3a = model1a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`
+
+error[E0412]: cannot find type `Model3a` in this scope
+  --> tests/compile_fail/_05_duplicate_property.rs:89:22
+   |
+15 | struct Model1a {
+   | -------------- similarly named struct `Model1a` defined here
+...
+89 |         let model3a: Model3a = model2a.clone().into();
+   |                      ^^^^^^^ help: a struct with a similar name exists: `Model1a`
